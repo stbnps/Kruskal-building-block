@@ -64,13 +64,14 @@ float Kruskal::solve() {
 	int treeCount = nodes.size();
 	float weight = 0;
 
-	for (unsigned int i = 0; i < nodes.size() && treeCount > 1; i++) {
+	for (unsigned int i = 0; i < edges.size() && treeCount > 1; i++) {
 		if (uf.join(edges[i]->a, edges[i]->b)) {
 			treeCount--;
 			weight += edges[i]->getWeight();
 
 			// Save the edge, it may be useful for the user
-			mst.push_back(edges[i]);
+			Edge *e = edges[i];
+			mst.push_back(e);
 		}
 	}
 
